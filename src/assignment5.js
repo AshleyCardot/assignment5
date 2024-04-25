@@ -1,4 +1,4 @@
-   // Sample Code for Proxy Pattern
+//  Question 4: Sample Code for Proxy Pattern
 class PaymentDetails {
     constructor(amount, currency) {
       this.amount = amount;
@@ -28,7 +28,7 @@ class PaymentDetails {
   }
    
    
-   // Sample Code for Strategy Pattern
+// Question 5: Sample Code for Strategy Pattern
   class PricingStrategy {
     calculatePrice(details) {}
   }
@@ -70,7 +70,7 @@ class PaymentDetails {
   }
   
 
-  // Sample Code for Observer Pattern
+// Question 6: Sample Code for Observer Pattern
   class Observer {
     update(coupon) {}
   }

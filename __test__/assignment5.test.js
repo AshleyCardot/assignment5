@@ -1,7 +1,7 @@
   
 const {PaymentDetails, PayPalData, PayPal, PaymentProxy, RideDetails, HighDemand, NormalDemand, LowDemand, PricingStrategy, RidePrice, Observer, Subject, Coupon, CouponDistributionSystem, Rider} =require('/Users/ashleycardot/Documents/Software Engineering/assignment5/src/assignment5.js');
   
-// Proxy Pattern Test Case
+//Question 4: Proxy Pattern Test Case
 describe('PaymentProxy', () => {
   it('should process payment using PayPal', () => {
     const paymentDetails = new PaymentDetails(100, 'USD');
@@ -15,7 +15,7 @@ describe('PaymentProxy', () => {
 });
   
 
-  // Strategy Pattern Test Case
+//Question 5: Strategy Pattern Test Case
 describe('RidePrice with different strategies', () => {
   it('should calculate high demand price correctly', () => {
     const rideDetails = new RideDetails(0.2, 10, 100);
@@ -36,8 +36,7 @@ describe('RidePrice with different strategies', () => {
   });
 });
 
-  // Observer Pattern Test Case
-
+//Question 6: Observer Pattern Test Case
 describe('CouponDistributionSystem', () => {
  it('should notify all registered riders with a coupon', () => {
    const couponSystem = new CouponDistributionSystem();
