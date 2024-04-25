@@ -20,7 +20,7 @@ describe('RidePrice with different strategies', () => {
   it('should calculate high demand price correctly', () => {
     const rideDetails = new RideDetails(0.2, 10, 100);
     const ridePrice = new RidePrice(new HighDemand());
-    expect(ridePrice.calculatePrice(rideDetails)).toBe(102);
+    expect(ridePrice.calculatePrice(rideDetails)).toBe(120);
   });
 
   it('should calculate normal demand price correctly', () => {
@@ -32,7 +32,7 @@ describe('RidePrice with different strategies', () => {
   it('should calculate low demand price correctly', () => {
     const rideDetails = new RideDetails(-0.1, 10, 100);
     const ridePrice = new RidePrice(new LowDemand());
-    expect(ridePrice.calculatePrice(rideDetails)).toBe(101);
+    expect(ridePrice.calculatePrice(rideDetails)).toBe(90);
   });
 });
 

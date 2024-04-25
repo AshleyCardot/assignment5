@@ -43,7 +43,7 @@ class PaymentDetails {
   
   class HighDemand extends PricingStrategy {
     calculatePrice(details) {
-      return details.basePrice * (1 + details.demandLevel * 0.1);
+        return details.basePrice * (1 + details.demandLevel);
     }
   }
   
@@ -55,7 +55,7 @@ class PaymentDetails {
   
   class LowDemand extends PricingStrategy {
     calculatePrice(details) {
-      return details.basePrice * (1 - details.demandLevel * 0.1);
+        return details.basePrice * (1 - Math.abs(details.demandLevel));
     }
   }
   
