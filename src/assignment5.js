@@ -124,15 +124,12 @@ class Rider extends Observer {
 }
 
 
-// Question 10: Decorator Pattern
-// Core Service Classes
+// Question 10: Sample Code for Decorator Pattern
 class BaseService {
   provideService() {
     return 'Basic Service';
   }
 }
-
-// Decorators
 class CityDecorator {
   constructor(service) {
     this.service = service;
@@ -155,7 +152,6 @@ class PremiumService extends CityDecorator {
   }
 }
 
-// Client Code
 const baseService = new BaseService();
 const extendedService = new ExtendedService(baseService);
 const premiumService = new PremiumService(baseService);
@@ -163,7 +159,7 @@ const premiumService = new PremiumService(baseService);
 console.log(extendedService.provideService()); // Outputs: "Basic Service with Extra Features"
 console.log(premiumService.provideService()); // Outputs: "Basic Service with Premium Features"
 
-// Question 11: Microservices
+// Question 11: Sample Code for Microservices Pattern
 class UserService {
   createUser(name, email) {
     return { id: Math.random(), name, email };
@@ -195,7 +191,7 @@ console.log(user); // Outputs user information
 console.log(ride); // Outputs ride information
 console.log(payment); // Outputs payment information
 
-// Question 12: MVC Pattern
+// Question 12: Sample Code for MVC Pattern
 class Model {
   constructor(data) {
     this.data = data;
@@ -235,17 +231,16 @@ class View {
   }
 }
 
-// Fix the initialization of the Controller and View
+// Initialization of the Controller and View
 const model = new Model('Initial Data');
 const controller = new Controller(model);
 const view = new View(controller);
 
-// Make sure the view uses the correct controller instance
 view.render(); // Outputs: "Displaying data: Initial Data"
-
 controller.setData('Updated Data'); // Outputs: "Displaying data: Updated Data"
 
 module.exports = {
-  PaymentDetails, PayPalData, PayPal, PaymentProxy, RideDetails, HighDemand, NormalDemand, LowDemand, PricingStrategy, RidePrice, Observer, Subject, Coupon, CouponDistributionSystem, Rider,
-  BaseService, CityDecorator, ExtendedService, PremiumService, UserService, RideService, PaymentService, Model, View, Controller
+  PaymentDetails, PayPalData, PayPal, PaymentProxy, RideDetails, HighDemand, NormalDemand, LowDemand, PricingStrategy, RidePrice,
+  Observer, Subject, Coupon, CouponDistributionSystem, Rider, BaseService, CityDecorator, ExtendedService, PremiumService, UserService,
+  RideService, PaymentService, Model, View, Controller
 };

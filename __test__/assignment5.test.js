@@ -1,6 +1,7 @@
 
-const { PaymentDetails, PayPalData, PayPal, PaymentProxy, RideDetails, HighDemand, NormalDemand, LowDemand, PricingStrategy, RidePrice, Observer, Subject, Coupon, CouponDistributionSystem, Rider,
-  UserService, RideService, PaymentService, BaseService, CityDecorator, ExtendedService, PremiumService, Model, View, Controller } = require('../src/assignment5');
+const { PaymentDetails, PayPalData, PayPal, PaymentProxy, RideDetails, HighDemand, NormalDemand, LowDemand,
+  RidePrice, Coupon, CouponDistributionSystem, Rider, UserService, RideService, PaymentService, BaseService,
+  ExtendedService, PremiumService, Model, View, Controller } = require('../src/assignment5');
 
 //Question 4: Proxy Pattern Test Case
 describe('PaymentProxy', () => {
