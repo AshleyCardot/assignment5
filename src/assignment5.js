@@ -1,3 +1,109 @@
+//Question 1 was diagrams only. No test cases necessary
+
+//Question 2: Sample Code for Facade and Strategy Pattern
+  
+class FareCalculationStrategy {
+  calculateFare() {
+    throw new Error("This method should be implemented");
+  }
+}
+
+class CarPOOLFareStrategy extends FareCalculationStrategy {
+  calculateFare() {
+    return 10.0;  // Base fare for carPOOL
+  }
+}
+
+class CarXFareStrategy extends FareCalculationStrategy {
+  calculateFare() {
+    return 20.0;  // Base fare for carX
+  }
+}
+
+class CarBlackFareStrategy extends FareCalculationStrategy {
+  calculateFare() {
+    return 30.0;  // Base fare for carBlack
+  }
+}
+
+class RideServiceFacade {
+  constructor() {
+    this.fareStrategy = null;
+  }
+
+  selectService(serviceType) {
+    switch (serviceType) {
+      case "carPOOL":
+        this.fareStrategy = new CarPOOLFareStrategy();
+        break;
+      case "carX":
+        this.fareStrategy = new CarXFareStrategy();
+        break;
+      case "carBlack":
+        this.fareStrategy = new CarBlackFareStrategy();
+        break;
+      default:
+        throw new Error("Unknown service type");
+    }
+  }
+
+  calculateFare() {
+    if (!this.fareStrategy) {
+      throw new Error("Service not selected");
+    }
+    return this.fareStrategy.calculateFare();
+  }
+}
+
+const facade = new RideServiceFacade();
+facade.selectService("carPOOL");
+console.log(`Fare for carPOOL: ${facade.calculateFare()}`); // Outputs: Fare for carPOOL: 10
+
+facade.selectService("carX");
+console.log(`Fare for carX: ${facade.calculateFare()}`); // Outputs: Fare for carX: 20
+
+facade.selectService("carBlack");
+console.log(`Fare for carBlack: ${facade.calculateFare()}`); // Outputs: Fare for carBlack: 30
+
+
+  
+  //Question 3: Sample Code for Template Design Pattern
+  // Base class
+class BaseRideService {
+  selectService() {
+  throw new Error('selectService must be implemented');
+  }
+  calculateFare() {
+  throw new Error('calculateFare must be implemented');
+  }
+  processPayment() { console.log('Payment processed.');
+  }
+  handleRideRequest() { this.selectService(); this.calculateFare(); this.processPayment();
+  }
+  }// Concrete class for City A
+  class CityARideService extends BaseRideService {
+  selectService() {
+  console.log('Service selected in City A');
+  }
+  calculateFare() {
+  console.log('Fare calculated for City A');
+  } }
+  // Concrete class for City B
+  class CityBRideService extends BaseRideService {
+  selectService() {
+  console.log('Service selected in City B');
+  }
+  calculateFare() {
+  console.log('Fare calculated for City B');
+  } }
+
+  // Client code
+const serviceA = new CityARideService(); serviceA.handleRideRequest(); // Follows the template method
+const serviceB = new CityBRideService(); serviceB.handleRideRequest(); // Follows the template method
+
+
+
+
 //  Question 4: Sample Code for Proxy Pattern
 class PaymentDetails {
   constructor(amount, currency) {
@@ -242,5 +348,6 @@ controller.setData('Updated Data'); // Outputs: "Displaying data: Updated Data"
 module.exports = {
   PaymentDetails, PayPalData, PayPal, PaymentProxy, RideDetails, HighDemand, NormalDemand, LowDemand, PricingStrategy, RidePrice,
   Observer, Subject, Coupon, CouponDistributionSystem, Rider, BaseService, CityDecorator, ExtendedService, PremiumService, UserService,
-  RideService, PaymentService, Model, View, Controller
+  RideService, PaymentService, Model, View, Controller, FareCalculationStrategy, CarPOOLFareStrategy, CarXFareStrategy, CarBlackFareStrategy, RideServiceFacade, 
+  CityARideService, CityBRideService, BaseRideService
 };

@@ -1,7 +1,139 @@
 
 const { PaymentDetails, PayPalData, PayPal, PaymentProxy, RideDetails, HighDemand, NormalDemand, LowDemand,
   RidePrice, Coupon, CouponDistributionSystem, Rider, UserService, RideService, PaymentService, BaseService,
-  ExtendedService, PremiumService, Model, View, Controller } = require('../src/assignment5');
+  ExtendedService, PremiumService, Model, View, Controller, FareCalculationStrategy, CarPOOLFareStrategy, CarXFareStrategy, CarBlackFareStrategy, RideServiceFacade, 
+  CityARideService, CityBRideService, BaseRideService } = require('../src/assignment5');
+//Question 2: Facade Pattern Test Case
+
+describe('RideServiceFacade', () => {
+  let facade;
+
+  beforeEach(() => {
+    facade = new RideServiceFacade();
+  });
+
+  test('should select CarPOOL service and calculate correct fare', () => {
+    facade.selectService("carPOOL");
+    expect(facade.calculateFare()).toBe(10.0);
+  });
+
+  test('should select CarX service and calculate correct fare', () => {
+    facade.selectService("carX");
+    expect(facade.calculateFare()).toBe(20.0);
+  });
+
+  test('should select CarBlack service and calculate correct fare', () => {
+    facade.selectService("carBlack");
+    expect(facade.calculateFare()).toBe(30.0);
+  });
+
+  test('should throw error for unknown service type', () => {
+    expect(() => facade.selectService("unknownService")).toThrow("Unknown service type");
+  });
+
+  test('should throw error if service not selected before calculating fare', () => {
+    expect(() => facade.calculateFare()).toThrow("Service not selected");
+  });
+});
+
+describe('Strategy Pattern Implementation', () => {
+  test('CarPOOLFareStrategy should return a fare of 10.0', () => {
+    const strategy = new CarPOOLFareStrategy();
+    expect(strategy.calculateFare()).toBe(10.0);
+  });
+
+  test('CarXFareStrategy should return a fare of 20.0', () => {
+    const strategy = new CarXFareStrategy();
+    expect(strategy.calculateFare()).toBe(20.0);
+  });
+
+  test('CarBlackFareStrategy should return a fare of 30.0', () => {
+    const strategy = new CarBlackFareStrategy();
+    expect(strategy.calculateFare()).toBe(30.0);
+  });
+});
+
+//Question 3: Template Pattern Test Case
+describe("RideService", () => {
+  let rideService;
+
+  beforeEach(() => {
+    rideService = new BaseRideService();
+  });
+
+  test("should throw error when selectService is called", () => {
+    expect(() => rideService.selectService()).toThrow('selectService must be implemented');
+  });
+
+  test("should throw error when calculateFare is called", () => {
+    expect(() => rideService.calculateFare()).toThrow('calculateFare must be implemented');
+  });
+
+  test("should print a message when processPayment is called", () => {
+    const consoleSpy = jest.spyOn(console, 'log');
+    rideService.processPayment();
+    expect(consoleSpy).toHaveBeenCalledWith('Payment processed.');
+    consoleSpy.mockRestore();
+  });
+});
+
+describe("CityARideService", () => {
+  let serviceA;
+
+  beforeEach(() => {
+    serviceA = new CityARideService();
+    jest.spyOn(console, 'log').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    console.log.mockRestore();
+  });
+
+  test("should call selectService and print a message for City A", () => {
+    serviceA.selectService();
+    expect(console.log).toHaveBeenCalledWith('Service selected in City A');
+  });
+
+  test("should call calculateFare and print a message for City A", () => {
+    serviceA.calculateFare();
+    expect(console.log).toHaveBeenCalledWith('Fare calculated for City A');
+  });
+
+  test("should process payment after handling ride request for City A", () => {
+    serviceA.handleRideRequest();
+    expect(console.log).toHaveBeenCalledWith('Payment processed.');
+  });
+});
+
+describe("CityBRideService", () => {
+  let serviceB;
+
+  beforeEach(() => {
+    serviceB = new CityBRideService();
+    jest.spyOn(console, 'log').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    console.log.mockRestore();
+  });
+
+  test("should call selectService and print a message for City B", () => {
+    serviceB.selectService();
+    expect(console.log).toHaveBeenCalledWith('Service selected in City B');
+  });
+
+  test("should call calculateFare and print a message for City B", () => {
+    serviceB.calculateFare();
+    expect(console.log).toHaveBeenCalledWith('Fare calculated for City B');
+  });
+
+  test("should process payment after handling ride request for City B", () => {
+    serviceB.handleRideRequest();
+    expect(console.log).toHaveBeenCalledWith('Payment processed.');
+  });
+});
+
+
 
 //Question 4: Proxy Pattern Test Case
 describe('PaymentProxy', () => {
