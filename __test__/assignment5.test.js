@@ -1,5 +1,5 @@
   
-const {PaymentDetails, PayPalData, PayPal, PaymentProxy, RideDetails, HighDemand, NormalDemand, LowDemand, PricingStrategy, RidePrice, Observer, Subject, Coupon, CouponDistributionSystem, Rider} =require('/Users/ashleycardot/Documents/Software Engineering/assignment5/src/assignment5.js');
+const {PaymentDetails, PayPalData, PayPal, PaymentProxy, RideDetails, HighDemand, NormalDemand, LowDemand, PricingStrategy, RidePrice, Observer, Subject, Coupon, CouponDistributionSystem, Rider} =require('../src/assignment5');
   
 //Question 4: Proxy Pattern Test Case
 describe('PaymentProxy', () => {
