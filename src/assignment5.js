@@ -1,7 +1,7 @@
 //Question 1 was diagrams only. No test cases necessary
 
 //Question 2: Sample Code for Facade and Strategy Pattern
-  
+
 class FareCalculationStrategy {
   calculateFare() {
     throw new Error("This method should be implemented");
@@ -10,19 +10,19 @@ class FareCalculationStrategy {
 
 class CarPOOLFareStrategy extends FareCalculationStrategy {
   calculateFare() {
-    return 10.0;  // Base fare for carPOOL
+    return 10.0; // Base fare for carPOOL
   }
 }
 
 class CarXFareStrategy extends FareCalculationStrategy {
   calculateFare() {
-    return 20.0;  // Base fare for carX
+    return 20.0; // Base fare for carX
   }
 }
 
 class CarBlackFareStrategy extends FareCalculationStrategy {
   calculateFare() {
-    return 30.0;  // Base fare for carBlack
+    return 30.0; // Base fare for carBlack
   }
 }
 
@@ -65,44 +65,47 @@ console.log(`Fare for carX: ${facade.calculateFare()}`); // Outputs: Fare for ca
 facade.selectService("carBlack");
 console.log(`Fare for carBlack: ${facade.calculateFare()}`); // Outputs: Fare for carBlack: 30
 
-
-  
-  //Question 3: Sample Code for Template Design Pattern
-  // Base class
+//Question 3: Sample Code for Template Design Pattern
+// Base class
 class BaseRideService {
   selectService() {
-  throw new Error('selectService must be implemented');
+    throw new Error("selectService must be implemented");
   }
   calculateFare() {
-  throw new Error('calculateFare must be implemented');
+    throw new Error("calculateFare must be implemented");
   }
-  processPayment() { console.log('Payment processed.');
+  processPayment() {
+    console.log("Payment processed.");
   }
-  handleRideRequest() { this.selectService(); this.calculateFare(); this.processPayment();
+  handleRideRequest() {
+    this.selectService();
+    this.calculateFare();
+    this.processPayment();
   }
-  }// Concrete class for City A
-  class CityARideService extends BaseRideService {
+} // Concrete class for City A
+class CityARideService extends BaseRideService {
   selectService() {
-  console.log('Service selected in City A');
+    console.log("Service selected in City A");
   }
   calculateFare() {
-  console.log('Fare calculated for City A');
-  } }
-  // Concrete class for City B
-  class CityBRideService extends BaseRideService {
+    console.log("Fare calculated for City A");
+  }
+}
+// Concrete class for City B
+class CityBRideService extends BaseRideService {
   selectService() {
-  console.log('Service selected in City B');
+    console.log("Service selected in City B");
   }
   calculateFare() {
-  console.log('Fare calculated for City B');
-  } }
+    console.log("Fare calculated for City B");
+  }
+}
 
-  // Client code
-const serviceA = new CityARideService(); serviceA.handleRideRequest(); // Follows the template method
-const serviceB = new CityBRideService(); serviceB.handleRideRequest(); // Follows the template method
-
-
-
+// Client code
+const serviceA = new CityARideService();
+serviceA.handleRideRequest(); // Follows the template method
+const serviceB = new CityBRideService();
+serviceB.handleRideRequest(); // Follows the template method
 
 //  Question 4: Sample Code for Proxy Pattern
 class PaymentDetails {
@@ -133,10 +136,9 @@ class PaymentProxy {
   }
 }
 
-
 // Question 5: Sample Code for Strategy Pattern
 class PricingStrategy {
-  calculatePrice(details) { }
+  calculatePrice(details) {}
 }
 
 class RideDetails {
@@ -175,16 +177,15 @@ class RidePrice {
   }
 }
 
-
 // Question 6: Sample Code for Observer Pattern
 class Observer {
-  update(coupon) { }
+  update(coupon) {}
 }
 
 class Subject {
-  registerObserver(observer) { }
-  removeObserver(observer) { }
-  notifyObservers() { }
+  registerObserver(observer) {}
+  removeObserver(observer) {}
+  notifyObservers() {}
 }
 
 class Coupon {
@@ -229,11 +230,10 @@ class Rider extends Observer {
   }
 }
 
-
 // Question 10: Sample Code for Decorator Pattern
 class BaseService {
   provideService() {
-    return 'Basic Service';
+    return "Basic Service";
   }
 }
 class CityDecorator {
@@ -248,13 +248,13 @@ class CityDecorator {
 
 class ExtendedService extends CityDecorator {
   provideService() {
-    return this.service.provideService() + ' with Extra Features';
+    return this.service.provideService() + " with Extra Features";
   }
 }
 
 class PremiumService extends CityDecorator {
   provideService() {
-    return this.service.provideService() + ' with Premium Features';
+    return this.service.provideService() + " with Premium Features";
   }
 }
 
@@ -280,7 +280,7 @@ class RideService {
 
 class PaymentService {
   processPayment(rideId, amount) {
-    return { paymentId: Math.random(), rideId, amount, status: 'Paid' };
+    return { paymentId: Math.random(), rideId, amount, status: "Paid" };
   }
 }
 
@@ -289,8 +289,8 @@ const userService = new UserService();
 const rideService = new RideService();
 const paymentService = new PaymentService();
 
-const user = userService.createUser('John Doe', 'john.doe@example.com');
-const ride = rideService.createRide(user.id, 'Downtown');
+const user = userService.createUser("John Doe", "john.doe@example.com");
+const ride = rideService.createRide(user.id, "Downtown");
 const payment = paymentService.processPayment(ride.rideId, 50);
 
 console.log(user); // Outputs user information
@@ -338,16 +338,211 @@ class View {
 }
 
 // Initialization of the Controller and View
-const model = new Model('Initial Data');
+const model = new Model("Initial Data");
 const controller = new Controller(model);
 const view = new View(controller);
 
 view.render(); // Outputs: "Displaying data: Initial Data"
-controller.setData('Updated Data'); // Outputs: "Displaying data: Updated Data"
+controller.setData("Updated Data"); // Outputs: "Displaying data: Updated Data"
+
+// Question 7
+class SocialNetworkSubject {
+  constructor() {
+    this.subscribers = [];
+  }
+
+  subscribe(subscriber) {
+    this.subscribers.push(subscriber);
+  }
+
+  unsubscribe(subscriber) {
+    const index = this.subscribers.indexOf(subscriber);
+    if (index !== -1) {
+      this.subscribers.splice(index, 1);
+    }
+  }
+
+  notifySubscribers(message) {
+    for (const subscriber of this.subscribers) {
+      subscriber.update(message);
+    }
+  }
+}
+
+class RiderSubscriber {
+  constructor() {
+    this.notifications = [];
+  }
+
+  update(message) {
+    this.notifications.push(message);
+  }
+}
+
+// Question 8
+class SharableCar {
+  getFeatures() {
+    throw new Error("This method should be implemented");
+  }
+
+  calculateTransportationFee() {
+    throw new Error("This method should be implemented");
+  }
+}
+
+class NormalCar extends SharableCar {
+  getFeatures() {
+    return ["Standard features"];
+  }
+
+  calculateTransportationFee() {
+    return 10;
+  }
+}
+
+class LuxuryBlackCar extends SharableCar {
+  getFeatures() {
+    return ["Luxury features", "Black exterior"];
+  }
+
+  calculateTransportationFee() {
+    return 50;
+  }
+}
+
+class SUV extends SharableCar {
+  getFeatures() {
+    return ["Spacious interior", "All-wheel drive"];
+  }
+
+  calculateTransportationFee() {
+    return 30;
+  }
+}
+
+class WheelchairAccessibleTransport extends SharableCar {
+  getFeatures() {
+    return ["Wheelchair ramp", "Spacious interior"];
+  }
+
+  calculateTransportationFee() {
+    return 20;
+  }
+}
+
+class SharableCarFactory {
+  createSharableCar() {
+    throw new Error("This method should be implemented");
+  }
+}
+
+class NormalCarFactory extends SharableCarFactory {
+  createSharableCar() {
+    return new NormalCar();
+  }
+}
+
+class LuxuryBlackCarFactory extends SharableCarFactory {
+  createSharableCar() {
+    return new LuxuryBlackCar();
+  }
+}
+
+class SUVFactory extends SharableCarFactory {
+  createSharableCar() {
+    return new SUV();
+  }
+}
+
+class WheelchairAccessibleTransportFactory extends SharableCarFactory {
+  createSharableCar() {
+    return new WheelchairAccessibleTransport();
+  }
+}
+
+// Question 9
+class LegacyCarReservationSystem {
+  bookCar(type, startDate, endDate) {
+    // Legacy code implementation for booking a car
+    return `BOOKING_ID_${Date.now()}`;
+  }
+
+  cancelBooking(bookingId) {
+    // Legacy code implementation for canceling a booking
+    return true;
+  }
+}
+
+class CarReservationAdapter {
+  constructor(legacySystem) {
+    this.legacySystem = legacySystem;
+  }
+
+  reserveCar(carType, startDate, endDate) {
+    const bookingId = this.legacySystem.bookCar(
+      carType,
+      startDate.toString(),
+      endDate.toString()
+    );
+    return {
+      reservationId: bookingId,
+      carType,
+      startDate,
+      endDate,
+    };
+  }
+
+  cancelReservation(reservationId) {
+    return this.legacySystem.cancelBooking(reservationId);
+  }
+}
 
 module.exports = {
-  PaymentDetails, PayPalData, PayPal, PaymentProxy, RideDetails, HighDemand, NormalDemand, LowDemand, PricingStrategy, RidePrice,
-  Observer, Subject, Coupon, CouponDistributionSystem, Rider, BaseService, CityDecorator, ExtendedService, PremiumService, UserService,
-  RideService, PaymentService, Model, View, Controller, FareCalculationStrategy, CarPOOLFareStrategy, CarXFareStrategy, CarBlackFareStrategy, RideServiceFacade, 
-  CityARideService, CityBRideService, BaseRideService
+  PaymentDetails,
+  PayPalData,
+  PayPal,
+  PaymentProxy,
+  RideDetails,
+  HighDemand,
+  NormalDemand,
+  LowDemand,
+  PricingStrategy,
+  RidePrice,
+  Observer,
+  Subject,
+  Coupon,
+  CouponDistributionSystem,
+  Rider,
+  BaseService,
+  CityDecorator,
+  ExtendedService,
+  PremiumService,
+  UserService,
+  RideService,
+  PaymentService,
+  Model,
+  View,
+  Controller,
+  FareCalculationStrategy,
+  CarPOOLFareStrategy,
+  CarXFareStrategy,
+  CarBlackFareStrategy,
+  RideServiceFacade,
+  CityARideService,
+  CityBRideService,
+  BaseRideService,
+  RiderSubscriber,
+  SocialNetworkSubject,
+  SharableCar,
+  NormalCar,
+  LuxuryBlackCar,
+  SUV,
+  WheelchairAccessibleTransport,
+  SharableCarFactory,
+  NormalCarFactory,
+  LuxuryBlackCarFactory,
+  SUVFactory,
+  WheelchairAccessibleTransportFactory,
+  LegacyCarReservationSystem,
+  CarReservationAdapter,
 };
