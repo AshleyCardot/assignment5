@@ -10,6 +10,6 @@ This project includes a set of basic classes that demonstrate each design patter
 
 ## Setup
 
-Make sure you have Node.js installed on your system. Then, install the project dependencies with **npm install**:
+Make sure you have Node.js installed on your system. Then, install the project dependencies with **npm install** in the main project directory:
 
 The test file can be run with **npm test**. 
